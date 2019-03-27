@@ -16,6 +16,11 @@ export class EventsGateway {
   }
   @WebSocketServer()
   server: Server;
+
+  @SubscribeMessage('events')
+  handleEvent(client: Client, data: string): string {
+    return data;
+  }
   @SubscribeMessage('events')
   findAll(client: Client, data: any): Observable<WsResponse<number>> {
     console.log('message emit ', data, 'client', client);
